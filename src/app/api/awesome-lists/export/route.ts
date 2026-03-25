@@ -12,10 +12,10 @@ export async function GET() {
       with: {
         category: true,
       },
-    });
+    }) as any[];
 
     // Group by category
-    const grouped: Record<string, typeof reposWithCategories> = {};
+    const grouped: Record<string, any[]> = {};
 
     for (const repo of reposWithCategories) {
       const catName = repo.category?.name || 'Uncategorized';

@@ -5,11 +5,12 @@ import { eq } from 'drizzle-orm';
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { categoryId } = await request.json();
-    const repoId = parseInt(params.id);
+    const { id } = await params;
+    const repoId = parseInt(id);
 
     const [updated] = await db.update(repos)
       .set({ categoryId: categoryId || null, updatedAt: new Date() })
