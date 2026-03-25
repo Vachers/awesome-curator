@@ -8,7 +8,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { categoryId } = request.json();
+    const body = await request.json();
+    const categoryId = body.categoryId;
     const { id } = await params;
     const repoId = parseInt(id);
 
